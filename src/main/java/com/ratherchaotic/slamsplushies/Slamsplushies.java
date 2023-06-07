@@ -1,12 +1,15 @@
 package com.ratherchaotic.slamsplushies;
 
 import com.mojang.logging.LogUtils;
+import com.ratherchaotic.slamsplushies.client.render.RenderPlushie;
 import com.ratherchaotic.slamsplushies.init.InitBlockEntityTypes;
 import com.ratherchaotic.slamsplushies.init.InitItems;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
@@ -28,16 +31,20 @@ public class Slamsplushies {
         InitItems.init();
         InitBlockEntityTypes.BLOCK_ENTITY_TYPES.register(MOD_EVENT_BUS);
 
-        MOD_EVENT_BUS.addListener(this::setup);
+        MOD_EVENT_BUS.addListener(this::onCommonSetup);
+        MOD_EVENT_BUS.addListener(this::onClientSetup);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void setup(final FMLCommonSetupEvent event) {
+    private void onCommonSetup(final FMLCommonSetupEvent event) {
         // Some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
     }
 
+    private void onClientSetup(final FMLClientSetupEvent event) {
+        BlockEntityRenderers.register(InitBlockEntityTypes.PLUSHIE.get(), RenderPlushie::new);
+    }
 }

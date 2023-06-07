@@ -11,7 +11,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -20,10 +19,10 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
-public class ItemPlushie extends BlockItem {
+public class ItemPlushie extends Item {
 
     public ItemPlushie() {
-        super(InitItems.PLUSHIEBLOCK.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS).stacksTo(1));
+        super(new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS).stacksTo(1));
     }
 
     public static int getTypeId(ItemStack stack) {
@@ -48,7 +47,7 @@ public class ItemPlushie extends BlockItem {
         Direction dir = context.getClickedFace();
         InteractionHand hand = context.getHand();
 
-        BlockPlushie PLUSHIE = (BlockPlushie) InitItems.PLUSHIEBLOCK.get();
+        BlockPlushie PLUSHIE = (BlockPlushie) InitItems.PLUSHIE_BLOCK.get();
         Location location = new Location(level, pos);
 
         //Checks if the Player exists.
@@ -72,7 +71,7 @@ public class ItemPlushie extends BlockItem {
 
             if (location.isBlockValidForPlacing()) {
 
-                location.setBlock(PLUSHIE);
+                location.setBlock(PLUSHIE.defaultBlockState().setValue(BlockPlushie.FACING, context.getHorizontalDirection().getOpposite()));
 
                 BlockEntity blockEntity = location.getBlockEntity();
 

@@ -28,8 +28,10 @@ public class InitItems {
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
-    public static final RegistryObject<Block> PLUSHIEBLOCK = BLOCKS.register("plushie_block", BlockPlushie::new);
-    public static final RegistryObject<Item> PLUSHIE = ITEMS.register("plushie", ItemPlushie::new);
+    public static final RegistryObject<Block> PLUSHIE_BLOCK = BLOCKS.register("plushie_block", BlockPlushie::new);
+
+    public static final RegistryObject<Item> PLUSHIE_BASE = ITEMS.register("plushie_base", ItemPlushie::new);
+    public static final RegistryObject<Item> PLUSHIE_CALEMI = ITEMS.register("plushie_calemi", ItemPlushie::new);
 
     /**
      * Used to register an Item.

@@ -1,0 +1,6 @@
+{
+  "parent": "slamsplushies:item/plushie_base",
+  "textures": {
+    "0": "slamsplushies:item/calemi"
+  }
+}

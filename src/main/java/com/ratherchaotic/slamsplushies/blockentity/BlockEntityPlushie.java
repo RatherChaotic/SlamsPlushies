@@ -15,6 +15,10 @@ public class BlockEntityPlushie extends BlockEntityBase {
         super(InitBlockEntityTypes.PLUSHIE.get(), pos, state);
     }
 
+    public ItemStack getPlushie() {
+        return plushie;
+    }
+
     public void setPlushie(ItemStack plushie) {
         this.plushie = plushie;
     }

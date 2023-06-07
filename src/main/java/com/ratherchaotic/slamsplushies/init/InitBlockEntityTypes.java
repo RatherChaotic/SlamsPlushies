@@ -15,5 +15,5 @@ public class InitBlockEntityTypes {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, Slamsplushies.MOD_ID);
 
     public static RegistryObject<BlockEntityType<BlockEntityPlushie>> PLUSHIE = BLOCK_ENTITY_TYPES.register(
-            "plushie", () -> BlockEntityType.Builder.of(BlockEntityPlushie::new, InitItems.PLUSHIEBLOCK.get()).build(null));
+            "plushie", () -> BlockEntityType.Builder.of(BlockEntityPlushie::new, InitItems.PLUSHIE_BLOCK.get()).build(null));
 }

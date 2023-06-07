@@ -1,0 +1,16 @@
+{
+  "variants": {
+	"facing=north": {
+	  "model": "slamsplushies:block/plushie"
+	},
+	"facing=south": {
+	  "model": "slamsplushies:block/plushie"
+	},
+	"facing=east": {
+	  "model": "slamsplushies:block/plushie"
+	},
+	"facing=west": {
+	  "model": "slamsplushies:block/plushie"
+	}
+  }
+}
