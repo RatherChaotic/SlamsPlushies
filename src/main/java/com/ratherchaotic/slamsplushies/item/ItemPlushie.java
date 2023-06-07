@@ -1,25 +1,29 @@
 package com.ratherchaotic.slamsplushies.item;
 
+import com.ratherchaotic.slamsplushies.Slamsplushies;
 import com.ratherchaotic.slamsplushies.block.BlockPlushie;
+import com.ratherchaotic.slamsplushies.blockentity.BlockEntityPlushie;
 import com.ratherchaotic.slamsplushies.init.InitItems;
-import com.ratherchaotic.slamsplushies.util.*;
+import com.tm.calemicore.util.Location;
+import com.tm.calemicore.util.helper.LogHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 
-import static com.ratherchaotic.slamsplushies.block.BlockPlushie.*;
+public class ItemPlushie extends BlockItem {
 
-public class ItemPlushie extends Item {
     public ItemPlushie() {
-        super(new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS).stacksTo(1));
+        super(InitItems.PLUSHIEBLOCK.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS).stacksTo(1));
     }
 
     public static int getTypeId(ItemStack stack) {
@@ -33,9 +37,6 @@ public class ItemPlushie extends Item {
         return meta;
     }
 
-    public static void setColorById(ItemStack stack, int meta) {
-        stack.getOrCreateTag().putInt("type", meta);
-    }
     @Override
     public InteractionResult useOn(UseOnContext context) {
 
@@ -69,14 +70,19 @@ public class ItemPlushie extends Item {
             //Checks if the Player can edit the Location.
             if (!placeContext.canPlace()) return InteractionResult.FAIL;
 
-            else {
+            if (location.isBlockValidForPlacing()) {
 
-                if (location.isBlockValidForPlacing()) {
-                    location.setBlock(PLUSHIE.defaultBlockState().setValue(PlushieType,(getTypeId(context.getItemInHand()))));
+                location.setBlock(PLUSHIE);
+
+                BlockEntity blockEntity = location.getBlockEntity();
+
+                if (blockEntity instanceof BlockEntityPlushie plushie) {
+                    LogHelper.log(Slamsplushies.MOD_ID, "SET PLUSHIE");
+                    plushie.setPlushie(context.getItemInHand());
                 }
-
-                return InteractionResult.SUCCESS;
             }
+
+            return InteractionResult.SUCCESS;
         }
 
         return InteractionResult.FAIL;

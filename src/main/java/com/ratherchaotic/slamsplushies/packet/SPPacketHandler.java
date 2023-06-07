@@ -16,7 +16,6 @@ public class SPPacketHandler {
 
     public static void init() {
         int id = 0;
-        SPPacketHandler.INSTANCE.registerMessage(++id, PacketPlushieSetType.class, PacketPlushieSetType::toBytes, PacketPlushieSetType::new, PacketPlushieSetType::handle);
 
     }
 }

@@ -1,7 +1,7 @@
 {
-  "varients": {
-    "type=0": {
-      "model": "slamsplushies:block/plushie_default"
-    }
+  "variants": {
+	"type=0": {
+	  "model": "slamsplushies:block/plushie_default"
+	}
   }
 }

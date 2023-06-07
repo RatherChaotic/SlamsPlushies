@@ -1,25 +1,23 @@
 package com.ratherchaotic.slamsplushies.block;
 
-import net.minecraft.world.level.block.Block;
+import com.ratherchaotic.slamsplushies.blockentity.BlockEntityPlushie;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Material;
+import org.jetbrains.annotations.Nullable;
 
-public class BlockPlushie extends Block {
-    public static final IntegerProperty PlushieType = SPBlockStates.PlushieType;
+public class BlockPlushie extends BaseEntityBlock {
+
     public BlockPlushie() {
-        super(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION)
-                .noOcclusion()
-                .strength(0.1F));
-        registerDefaultState(getStateDefinition().any().setValue(PlushieType, 0));
+        super(BlockBehaviour.Properties.of(Material.CLOTH_DECORATION).noOcclusion().strength(0.1F));
     }
 
-
-
+    @Nullable
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(PlushieType);
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new BlockEntityPlushie(pos, state);
     }
 }

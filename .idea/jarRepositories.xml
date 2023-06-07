@@ -31,5 +31,20 @@
       <option name="name" value="ParchmentMC" />
       <option name="url" value="https://maven.parchmentmc.org/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="JEI Maven" />
+      <option name="name" value="JEI Maven" />
+      <option name="url" value="https://dvs1.progwml6.com/files/maven/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="Calemi Core Maven" />
+      <option name="name" value="Calemi Core Maven" />
+      <option name="url" value="https://www.cursemaven.com" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="JEI Maven Fallback" />
+      <option name="name" value="JEI Maven Fallback" />
+      <option name="url" value="https://modmaven.dev" />
+    </remote-repository>
   </component>
 </project>

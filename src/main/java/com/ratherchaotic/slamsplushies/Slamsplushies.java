@@ -1,6 +1,7 @@
 package com.ratherchaotic.slamsplushies;
 
 import com.mojang.logging.LogUtils;
+import com.ratherchaotic.slamsplushies.init.InitBlockEntityTypes;
 import com.ratherchaotic.slamsplushies.init.InitItems;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -22,10 +23,12 @@ public class Slamsplushies {
 
     public Slamsplushies() {
         // Register the setup method for modloading
-        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        InitItems.init();
+        MOD_EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
 
-        eventBus.addListener(this::setup);
+        InitItems.init();
+        InitBlockEntityTypes.BLOCK_ENTITY_TYPES.register(MOD_EVENT_BUS);
+
+        MOD_EVENT_BUS.addListener(this::setup);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
