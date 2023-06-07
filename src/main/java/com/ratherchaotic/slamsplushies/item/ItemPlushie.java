@@ -76,7 +76,6 @@ public class ItemPlushie extends Item {
                 BlockEntity blockEntity = location.getBlockEntity();
 
                 if (blockEntity instanceof BlockEntityPlushie plushie) {
-                    LogHelper.log(Slamsplushies.MOD_ID, "SET PLUSHIE");
                     plushie.setPlushie(context.getItemInHand());
                 }
             }
